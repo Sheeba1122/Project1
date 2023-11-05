@@ -26,8 +26,8 @@ public class pomcalling {
 	public FirefoxDriver driver;
 
 	
-	@BeforeClass
-	public void launcWeb()  {
+		@BeforeClass
+		public void launcWeb()  {
 		System.setProperty("webdriver.FireFox", "C:\\Program Files\\Mozilla Firefox\\Firefox.exe");
 		driver = new FirefoxDriver();
 		driver.get("https://www.saucedemo.com/");
@@ -46,24 +46,20 @@ public class pomcalling {
 	}
 		@Test(priority=2)
 		public void selecItem() {
-		//Verifying the Header of application
-		WebElement header = driver.findElement(By.xpath("//*[contains(@class,'app_logo')]/parent::div"));
-		System.out.println(header.getText());
-		//Selecting product	
 		pom p = PageFactory.initElements(driver, pom.class);
+		//Verifying the Header of application
+		System.out.println(p.header.getText());
+		//Selecting product	
 		p.img.click();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		}
 		
 		@Test(priority=3)
 		public void addToCart() {
-		WebElement productname = driver.findElement(By.xpath("//*[contains(@class,'inventory_details_name large_size')]"));
-		System.out.println(productname.getText());
-		WebElement productdetails = driver.findElement(By.xpath("//*[contains(@class,'inventory_details_desc large_size')]"));
-		System.out.println(productdetails.getText());
-		WebElement productprice =driver.findElement(By.xpath("//*[contains(@class,'inventory_details_price')]"));
-		System.out.println(productprice.getText());
 		pom p = PageFactory.initElements(driver, pom.class);
+		System.out.println(p.productname.getText());
+		System.out.println(p.productdetails.getText());
+		System.out.println(p.productprice.getText());
 		p.atc.click();
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		
@@ -97,8 +93,8 @@ public class pomcalling {
 		
 		@Test(priority=5)
 		public void complete() throws Exception {
-			WebElement message= driver.findElement(By.xpath("//*[@id='checkout_complete_container']"));
-			System.out.println(message.getText());
+			pom p = PageFactory.initElements(driver, pom.class);
+			System.out.println(p.message.getText());
 			File f = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 			Files.copy(f, new File("F:\\AutomationTesting\\Assignments\\ProjectSelenium\\confirm_order.png"));
 			driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);

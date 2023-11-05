@@ -18,5 +18,10 @@ public class pom {
 	@FindBy(id="postal-code") WebElement postlcode;
 	@FindBy(id="continue") WebElement cnt;
 	@FindBy(id="finish") WebElement finish;
+	@FindBy(xpath="//*[contains(@class,'app_logo')]/parent::div") WebElement header;
+	@FindBy(xpath="//*[contains(@class,'inventory_details_name large_size')]") WebElement productname;
+	@FindBy(xpath="//*[contains(@class,'inventory_details_desc large_size')]") WebElement productdetails;
+	@FindBy(xpath="//*[contains(@class,'inventory_details_price')]") WebElement productprice;
+	@FindBy(id="checkout_complete_container") WebElement message;
 	
 }
